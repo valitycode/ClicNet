@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClicNet — Panier</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6e9ee"/>
+      <stop offset="100%" stop-color="#7d828d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="nav-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+    </div>
+    <div class="nav-icons">
+      <button type="button" class="icon-btn" id="searchToggle" aria-label="Rechercher un produit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="panier.html" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="icon-label">Panier</span></a>
+    </div>
+    <div class="search-panel" id="searchPanel">
+      <input type="text" id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher un produit">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</nav>
+
+<header class="page-top">
+  <p class="eyebrow">ClicNet</p>
+  <h1>Votre panier.</h1>
+  <p>Ajoutez vos produits, ajustez les quantités, puis payez chaque produit via son lien Stripe.</p>
+</header>
+
+<section class="section" style="border-top:none; padding-top: 20px;">
+  <div class="wrap">
+    <h2 style="text-align:left; margin-bottom: 24px;">Ajouter un produit</h2>
+    <div class="catalog-grid" id="catalogGrid"></div>
+
+    <h2 style="text-align:left; margin-bottom: 24px;">Votre commande</h2>
+    <div id="cartContent"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="footer-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+      <a href="panier.html">Panier</a>
+    </div>
+    <p class="fine-print">© <span id="year"></span> ClicNet</p>
+  </div>
+</footer>
+
+<script src="products-config.js"></script>
+<script src="script.js"></script>
+<script>
+  // Catalogue partagé : produits par défaut (clavier/souris) + fiches détaillées (products-config.js)
+  const products = getAllProducts();
+
+  function renderCatalog() {
+    document.getElementById('catalogGrid').innerHTML = products.map(p => catalogCardHTML(p, 'action')).join('');
+  }
+  renderCatalog();
+
+  // Panier gardé en mémoire pour la durée de cette page
+  let cart = [];
+  let appliedPromo = null;
+
+  function addToCart(id) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ id, qty: 1 });
+    }
+    renderCart();
+  }
+
+  function changeQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+    renderCart();
+  }
+
+  function removeItem(id) {
+    cart = cart.filter(i => i.id !== id);
+    renderCart();
+  }
+
+  function applyPromo() {
+    const input = document.getElementById('promoInput');
+    const found = findPromoCode(input.value);
+    const msg = document.getElementById('promoMessage');
+    if (found) {
+      appliedPromo = found;
+      msg.textContent = `Code "${found.code.toUpperCase()}" appliqué : -${found.percent}%.`;
+      msg.className = 'session-note margin-pos';
+    } else {
+      appliedPromo = null;
+      msg.textContent = 'Code promo invalide.';
+      msg.className = 'session-note margin-neg';
+    }
+    renderCart();
+  }
+
+  function renderCart() {
+    const el = document.getElementById('cartContent');
+    if (cart.length === 0) {
+      el.innerHTML = '<p class="empty-state">Votre panier est vide pour l\'instant.</p>';
+      return;
+    }
+    let total = 0;
+    let rows = '';
+    cart.forEach(item => {
+      const product = products.find(p => p.slug === item.id);
+      if (!product) return;
+      const subtotal = product.price * item.qty;
+      total += subtotal;
+      const payUrl = stripeCheckoutUrl(product, item.qty);
+      const payButton = payUrl
+        ? `<a href="${payUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="padding:8px 16px; font-size:.85rem;">Payer</a>`
+        : `<span class="session-note" title="Créez un lien de paiement pour ce produit dans le tableau de bord Stripe, puis ajoutez-le dans products-config.js.">Pas encore en vente</span>`;
+      rows += `
+        <tr>
+          <td>${product.name}</td>
+          <td>${product.price} €</td>
+          <td>
+            <div class="qty-stepper">
+              <button type="button" onclick="changeQty('${item.id}', -1)" aria-label="Diminuer la quantité">−</button>
+              <span>${item.qty}</span>
+              <button type="button" onclick="changeQty('${item.id}', 1)" aria-label="Augmenter la quantité">+</button>
+            </div>
+          </td>
+          <td>${subtotal} €</td>
+          <td>${payButton}</td>
+          <td><button type="button" class="btn-text" onclick="removeItem('${item.id}')">Retirer</button></td>
+        </tr>`;
+    });
+
+    const discount = appliedPromo ? total * (appliedPromo.percent / 100) : 0;
+    const finalTotal = total - discount;
+
+    const totalHTML = appliedPromo
+      ? `
+        <div class="cart-total" style="border-top:none; padding-top:0; margin-top:16px;">
+          <span>Sous-total</span>
+          <span>${total.toFixed(2)} €</span>
+        </div>
+        <div class="cart-total" style="padding-top:0; margin-top:6px; font-size:1rem;">
+          <span class="margin-pos">Code ${appliedPromo.code.toUpperCase()} (-${appliedPromo.percent}%)</span>
+          <span class="margin-pos">-${discount.toFixed(2)} €</span>
+        </div>
+        <div class="cart-total">
+          <span>Total</span>
+          <span>${finalTotal.toFixed(2)} €</span>
+        </div>`
+      : `
+        <div class="cart-total">
+          <span>Total</span>
+          <span>${total.toFixed(2)} €</span>
+        </div>`;
+
+    el.innerHTML = `
+      <table class="cart-table">
+        <tbody>${rows}</tbody>
+      </table>
+      ${totalHTML}
+      <div class="qty-stepper" style="margin-top:24px; gap:10px;">
+        <input type="text" id="promoInput" placeholder="Code promo" style="padding:10px 14px; border-radius:10px; border:1px solid var(--line); background:var(--bg-alt); color:var(--text); font-size:.9rem; width:180px;">
+        <button type="button" class="btn btn-ghost" style="padding:10px 18px; font-size:.85rem;" onclick="applyPromo()">Appliquer</button>
+      </div>
+      <p class="session-note" id="promoMessage" style="margin-top:10px;"></p>
+      <p class="session-note" style="margin-top:16px;">Chaque produit se paie séparément via son propre lien Stripe (ouvert dans un nouvel onglet) — c'est ce qui permet d'accepter de vrais paiements sans serveur. Le code promo réduit le total affiché ici ; pour qu'il s'applique aussi au paiement, configurez le même code côté Stripe.</p>
+    `;
+  }
+
+  // Retour depuis Stripe après un paiement (si le lien de paiement redirige vers cette page)
+  function showStripeReturnStatus() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success')) {
+      const el = document.getElementById('cartContent');
+      const notice = document.createElement('p');
+      notice.className = 'notice success';
+      notice.textContent = 'Paiement confirmé, merci pour votre commande !';
+      el.prepend(notice);
+    }
+  }
+
+  // Ajout automatique depuis un lien "Ajouter au panier" d'une fiche produit
+  const params = new URLSearchParams(window.location.search);
+  const addParam = params.get('add');
+  if (addParam && products.some(p => p.slug === addParam)) addToCart(addParam);
+  renderCart();
+  showStripeReturnStatus();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClicNet — Clavier &amp; souris, pensés pour disparaître sous vos doigts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6e9ee"/>
+      <stop offset="100%" stop-color="#7d828d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="nav-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+    </div>
+    <div class="nav-icons">
+      <button type="button" class="icon-btn" id="searchToggle" aria-label="Rechercher un produit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="panier.html" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="icon-label">Panier</span></a>
+    </div>
+    <div class="search-panel" id="searchPanel">
+      <input type="text" id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher un produit">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="orb"></div>
+  <p class="eyebrow">ClicNet</p>
+  <h1>La précision, réinventée.</h1>
+  <p class="lede">Les produits arrivent bientôt. Rejoignez la communauté dès maintenant !</p>
+  <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+  <div class="hero-actions">
+    <a href="clavier.html" class="btn btn-primary">Voir le clavier</a>
+    <a href="souris.html" class="btn btn-ghost">Voir la souris</a>
+  </div>
+  <div class="scroll-cue"></div>
+</header>
+
+<section class="manifesto">
+  <p>On ne lance pas cent produits. On perfectionne les deux qui comptent vraiment.</p>
+</section>
+
+<!-- ===================== CLAVIER ===================== -->
+<section class="product" id="clavier">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 200 90" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="6" width="188" height="78" rx="10"/>
+        <line x1="20" y1="26" x2="180" y2="26"/>
+        <line x1="20" y1="45" x2="180" y2="45"/>
+        <line x1="20" y1="64" x2="120" y2="64"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/clavier.jpg" alt="Clavier ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">ClicNet Clavier</p>
+      <h2>Chaque touche, calibrée.</h2>
+      <p class="desc">Un mécanisme optique conçu pour une frappe nette et silencieuse, quel que soit le rythme. La disposition a été redessinée pour que les doigts trouvent naturellement leur place.</p>
+      <ul class="feature-list">
+        <li>Switches optiques sur mesure, réactivité en moins d'une milliseconde</li>
+        <li>Châssis en aluminium brossé, résistant et stable</li>
+        <li>Rétroéclairage adaptatif qui suit la lumière ambiante</li>
+      </ul>
+      <div class="spec-row">
+        <div class="spec"><div class="num" data-count="0.2" data-decimals="1">0</div><div class="label">ms de latence</div></div>
+        <div class="spec"><div class="num" data-count="100">0</div><div class="label">millions de cycles</div></div>
+        <div class="spec"><div class="num" data-count="3">0</div><div class="label">appareils connectés</div></div>
+      </div>
+      <p id="priceClavier" style="margin-top: 30px; font-family: 'Space Grotesk'; font-size: 1.3rem; color: var(--text);">1 €</p>
+      <div class="hero-actions" style="justify-content:flex-start; margin-top: 16px;">
+        <a href="panier.html?add=clavier" class="btn btn-primary">Ajouter au panier</a>
+        <a href="clavier.html" class="btn-text" style="align-self:center;">Voir la fiche complète</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOURIS ===================== -->
+<section class="product reverse" id="souris">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 150" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 6c24 0 38 18 38 46v50c0 24-17 42-38 42s-38-18-38-42V52C12 24 26 6 50 6Z"/>
+        <line x1="50" y1="6" x2="50" y2="50"/>
+        <line x1="50" y1="60" x2="50" y2="76"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/souris.jpg" alt="Souris ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">ClicNet Souris</p>
+      <h2>Glisse, sans y penser.</h2>
+      <p class="desc">Un capteur haute précision et une coque sculptée pour épouser la main. Le clic devient un réflexe plus qu'un geste.</p>
+      <ul class="feature-list">
+        <li>Capteur 26 000 DPI, suivi fluide sur toute surface</li>
+        <li>Autonomie de 70 jours sur une seule charge</li>
+        <li>Pieds en PTFE pour un glissé sans friction</li>
+      </ul>
+      <div class="spec-row">
+        <div class="spec"><div class="num" data-count="26000">0</div><div class="label">DPI</div></div>
+        <div class="spec"><div class="num" data-count="70">0</div><div class="label">jours d'autonomie</div></div>
+        <div class="spec"><div class="num" data-count="58">0</div><div class="label">grammes</div></div>
+      </div>
+      <p id="priceSouris" style="margin-top: 30px; font-family: 'Space Grotesk'; font-size: 1.3rem; color: var(--text);">79 €</p>
+      <div class="hero-actions" style="justify-content:flex-start; margin-top: 16px;">
+        <a href="panier.html?add=souris" class="btn btn-primary">Ajouter au panier</a>
+        <a href="souris.html" class="btn-text" style="align-self:center;">Voir la fiche complète</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="moreProductsSection" style="display:none;">
+  <div class="wrap">
+    <h2>Autres produits</h2>
+    <p class="section-lede">Ajoutés dans products-config.js. <a href="autres-produits.html" class="btn-text">Voir tous les produits</a></p>
+    <div class="catalog-grid" id="moreProductsGrid" style="margin-top:40px;"></div>
+  </div>
+</section>
+
+<section class="pairing">
+  <div class="wrap">
+    <h2>Faits pour aller ensemble.</h2>
+    <p>Associez le clavier et la souris au même récepteur, ou connectez-les en bluetooth à trois appareils à la fois. Passez d'un ordinateur à l'autre sans rien débrancher.</p>
+    <div class="pair-visual">
+      <span class="pair-chip">Un seul récepteur</span>
+      <span class="pair-chip">Bluetooth multipoint</span>
+      <span class="pair-chip">Bascule instantanée</span>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist" id="discord">
+  <div class="wrap">
+    <h2>Rejoignez la communauté.</h2>
+    <p>Suivez les coulisses du projet et soyez informé dès que le clavier et la souris sont disponibles.</p>
+    <div class="hero-actions" style="margin-top:38px;">
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener" class="btn btn-primary">Rejoindre le Discord</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="footer-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+      <a href="panier.html">Panier</a>
+    </div>
+    <p class="fine-print">© <span id="year"></span> ClicNet</p>
+  </div>
+</footer>
+
+<script src="products-config.js"></script>
+<script src="script.js"></script>
+<script>
+  // Synchronise les prix affichés et fait apparaître les produits ajoutés dans products-config.js
+  const homeProducts = getAllProducts();
+  const homeClavier = homeProducts.find(p => p.slug === 'clavier');
+  const homeSouris = homeProducts.find(p => p.slug === 'souris');
+  if (homeClavier) document.getElementById('priceClavier').textContent = homeClavier.price + ' €';
+  if (homeSouris) document.getElementById('priceSouris').textContent = homeSouris.price + ' €';
+
+  const extraProducts = homeProducts.filter(p => p.slug !== 'clavier' && p.slug !== 'souris');
+  if (extraProducts.length) {
+    document.getElementById('moreProductsSection').style.display = 'block';
+    document.getElementById('moreProductsGrid').innerHTML = extraProducts.map(p => catalogCardHTML(p, 'link')).join('');
+  }
+</script>
+</body>
+</html>

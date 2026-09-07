@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClicNet — Autres produits</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6e9ee"/>
+      <stop offset="100%" stop-color="#7d828d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="nav-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html" class="active">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+    </div>
+    <div class="nav-icons">
+      <button type="button" class="icon-btn" id="searchToggle" aria-label="Rechercher un produit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="panier.html" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="icon-label">Panier</span></a>
+    </div>
+    <div class="search-panel" id="searchPanel">
+      <input type="text" id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher un produit">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</nav>
+
+<header class="page-top">
+  <p class="eyebrow">ClicNet</p>
+  <h1>Autres produits.</h1>
+  <p>Tout ce qui a été ajouté dans <code>products-config.js</code>, en plus du clavier et de la souris.</p>
+</header>
+
+<section class="section" style="border-top:none; padding-top: 20px;">
+  <div class="wrap">
+    <div class="catalog-grid" id="catalogGrid"></div>
+    <div id="emptyState" style="display:none;">
+      <p class="empty-state">Aucun autre produit pour l'instant. Ajoutez-en dans <code>products-config.js</code>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="footer-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+      <a href="panier.html">Panier</a>
+    </div>
+    <p class="fine-print">© <span id="year"></span> ClicNet</p>
+  </div>
+</footer>
+
+<script src="products-config.js"></script>
+<script src="script.js"></script>
+<script>
+  const otherProducts = getAllProducts().filter(p => p.slug !== 'clavier' && p.slug !== 'souris');
+  if (otherProducts.length) {
+    document.getElementById('catalogGrid').innerHTML = otherProducts.map(p => catalogCardHTML(p, 'link')).join('');
+  } else {
+    document.getElementById('emptyState').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

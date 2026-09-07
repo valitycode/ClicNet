@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">ClicNet — Produit</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6e9ee"/>
+      <stop offset="100%" stop-color="#7d828d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="nav-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+    </div>
+    <div class="nav-icons">
+      <button type="button" class="icon-btn" id="searchToggle" aria-label="Rechercher un produit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="panier.html" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="icon-label">Panier</span></a>
+    </div>
+    <div class="search-panel" id="searchPanel">
+      <input type="text" id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher un produit">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</nav>
+
+<div id="productContent"></div>
+
+<div id="notFound" style="display:none;">
+  <div class="page-top">
+    <p class="eyebrow">ClicNet</p>
+    <h1>Fiche introuvable.</h1>
+    <p>Ce produit n'existe pas ou plus dans le config. <a href="autres-produits.html" class="btn-text">Voir tous les produits</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="footer-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+      <a href="panier.html">Panier</a>
+    </div>
+    <p class="fine-print">© <span id="year"></span> ClicNet</p>
+  </div>
+</footer>
+
+<script src="products-config.js"></script>
+<script src="script.js"></script>
+<script>
+  function photoOrPlaceholder(photo, alt) {
+    if (!photo) return `<span class="stage-tag">Photo à venir</span>`;
+    return `
+      <div class="stage-placeholder"><span class="stage-tag">Photo à venir</span></div>
+      <img class="stage-photo" src="${photo}" alt="${alt || ''}" style="display:none;"
+        onload="this.style.display='block'; this.previousElementSibling.style.display='none';"
+        onerror="this.remove();">`;
+  }
+
+  function renderProduct(p) {
+    document.getElementById('pageTitle').textContent = `ClicNet — ${p.name}`;
+
+    const sectionsHTML = (p.sections || []).map((s, i) => `
+      <section class="product${i % 2 === 1 ? ' reverse' : ''}"${i === 0 ? ' style="border-top:none;"' : ''}>
+        <div class="wrap">
+          <div class="stage" data-tilt>${photoOrPlaceholder(s.photo, s.title)}</div>
+          <div class="product-copy">
+            <p class="kicker">${s.kicker || ''}</p>
+            <h2>${s.title || ''}</h2>
+            <p class="desc">${s.text || ''}</p>
+            ${(s.features && s.features.length) ? `<ul class="feature-list">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>` : ''}
+          </div>
+        </div>
+      </section>`).join('');
+
+    const galleryHTML = (p.gallery && p.gallery.length) ? `
+      <section class="section">
+        <div class="wrap">
+          <h2>En photos.</h2>
+          <p class="section-lede">Les visuels arrivent au fur et à mesure — ces emplacements sont prêts à les recevoir.</p>
+          <div class="gallery">
+            ${p.gallery.map(photo => `<div class="stage" data-tilt>${photoOrPlaceholder(photo, p.name)}</div>`).join('')}
+          </div>
+        </div>
+      </section>` : '';
+
+    const specsHTML = (p.specs && p.specs.length) ? `
+      <section class="section">
+        <div class="wrap">
+          <h2>Caractéristiques.</h2>
+          <table class="spec-table">
+            ${p.specs.map(row => `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`).join('')}
+          </table>
+        </div>
+      </section>` : '';
+
+    const inBoxHTML = (p.inBox && p.inBox.length) ? `
+      <section class="section">
+        <div class="wrap">
+          <h2>Dans la boîte.</h2>
+          <ul class="feature-list" style="max-width:420px; margin:40px auto 0;">
+            ${p.inBox.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      </section>` : '';
+
+    const faqHTML = (p.faq && p.faq.length) ? `
+      <section class="section">
+        <div class="wrap">
+          <h2>Questions fréquentes.</h2>
+          <div class="faq">
+            ${p.faq.map(item => `<details class="faq-item"><summary>${item.q}</summary><p>${item.a}</p></details>`).join('')}
+          </div>
+        </div>
+      </section>` : '';
+
+    document.getElementById('productContent').innerHTML = `
+      <header class="hero hero--page">
+        <div class="orb"></div>
+        <p class="breadcrumb"><a href="index.html">Accueil</a> · <a href="autres-produits.html">Autres produits</a> · ${p.name}</p>
+        <h1>${p.tagline || p.name}</h1>
+        <p class="lede">${p.description || ''}</p>
+        <p style="margin-top: 20px; font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--text);">${p.price} €</p>
+        <div class="hero-actions">
+          <a href="panier.html?add=${p.slug}" class="btn btn-primary">Ajouter au panier</a>
+          <a href="autres-produits.html" class="btn btn-ghost">Voir les autres produits</a>
+        </div>
+      </header>
+      ${sectionsHTML}
+      ${galleryHTML}
+      ${specsHTML}
+      ${inBoxHTML}
+      ${faqHTML}
+      <section class="waitlist" id="discord">
+        <div class="wrap">
+          <h2>Rejoignez la communauté.</h2>
+          <p>Suivez les coulisses du projet et soyez informé dès que ce produit est disponible.</p>
+          <div class="hero-actions" style="margin-top:38px;">
+            <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener" class="btn btn-primary">Rejoindre le Discord</a>
+          </div>
+        </div>
+      </section>
+    `;
+
+    // Les effets de survol des visuels sont ajoutés après coup, une fois le contenu inséré.
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('[data-tilt]').forEach(stage => {
+        stage.addEventListener('mousemove', (e) => {
+          const rect = stage.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          stage.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+        });
+        stage.addEventListener('mouseleave', () => {
+          stage.style.transform = 'perspective(700px) rotateY(0) rotateX(0)';
+        });
+      });
+    }
+  }
+
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  const config = (typeof PRODUCT_CONFIG !== 'undefined') ? PRODUCT_CONFIG.find(p => p.slug === slug) : null;
+  if (config) {
+    renderProduct(config);
+  } else {
+    document.getElementById('notFound').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

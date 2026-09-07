@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClicNet Souris — Glisse, sans y penser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6e9ee"/>
+      <stop offset="100%" stop-color="#7d828d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="nav-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html" class="active">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+    </div>
+    <div class="nav-icons">
+      <button type="button" class="icon-btn" id="searchToggle" aria-label="Rechercher un produit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="panier.html" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="icon-label">Panier</span></a>
+    </div>
+    <div class="search-panel" id="searchPanel">
+      <input type="text" id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher un produit">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero hero--page">
+  <div class="orb"></div>
+  <p class="breadcrumb"><a href="index.html">Accueil</a> · Souris</p>
+  <h1>Glisse, sans y penser.</h1>
+  <p class="lede">Un capteur haute précision et une coque sculptée pour épouser la main.</p>
+  <p id="priceSouris" style="margin-top: 20px; font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--text);">79 €</p>
+  <div class="hero-actions">
+    <a href="panier.html?add=souris" class="btn btn-primary">Ajouter au panier</a>
+    <a href="clavier.html" class="btn btn-ghost">Voir le clavier</a>
+  </div>
+</header>
+
+<section class="product" style="border-top:none;">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 150" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 6c24 0 38 18 38 46v50c0 24-17 42-38 42s-38-18-38-42V52C12 24 26 6 50 6Z"/>
+        <line x1="50" y1="6" x2="50" y2="50"/>
+        <line x1="50" y1="60" x2="50" y2="76"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/souris-hero.jpg" alt="Souris ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">Précision</p>
+      <h2>Un capteur qui ne dévie jamais.</h2>
+      <p class="desc">26 000 DPI et un temps de réponse constant, sur du bois, du tissu ou du verre. Le curseur suit exactement le geste, sans lissage artificiel ni décrochage.</p>
+      <div class="spec-row">
+        <div class="spec"><div class="num" data-count="26000">0</div><div class="label">DPI</div></div>
+        <div class="spec"><div class="num" data-count="650">0</div><div class="label">IPS max</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="product reverse">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 150" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 20c18 0 30 14 30 36v40c0 20-14 34-30 34s-30-14-30-34V56c0-22 12-36 30-36Z"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/souris-forme.jpg" alt="Forme ergonomique de la souris ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">Prise en main</p>
+      <h2>Sculptée pour la main, pas l'inverse.</h2>
+      <p class="desc">La coque suit la courbe naturelle de la paume et répartit le poids vers l'arrière, pour que les doigts restent légers sur les boutons pendant les longues sessions.</p>
+      <ul class="feature-list">
+        <li>Forme symétrique, adaptée aux deux mains</li>
+        <li>Boutons latéraux repositionnables</li>
+        <li>Molette à crans ou en roue libre, au choix</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="product">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 150" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M50 6c24 0 38 18 38 46v50c0 24-17 42-38 42s-38-18-38-42V52C12 24 26 6 50 6Z"/>
+        <rect x="42" y="60" width="16" height="30" rx="3" fill="url(#metalGradient)" stroke="none"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/souris-autonomie.jpg" alt="Autonomie de la souris ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">Autonomie</p>
+      <h2>70 jours, une seule charge.</h2>
+      <p class="desc">Une batterie optimisée pour la basse consommation tient plusieurs semaines d'usage quotidien. Dix minutes sur le câble USB-C suffisent pour une journée complète.</p>
+      <ul class="feature-list">
+        <li>Charge rapide : 10 min pour 1 jour d'usage</li>
+        <li>Mise en veille automatique après 5 minutes</li>
+        <li>Voyant de niveau de batterie sous la coque</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>En photos.</h2>
+    <p class="section-lede">Les visuels du produit final arrivent bientôt — ces emplacements sont prêts à les recevoir.</p>
+    <div class="gallery">
+      <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 100" fill="none" stroke-width="2.4"><ellipse cx="50" cy="50" rx="28" ry="38"/></svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/souris-1.jpg" alt="Souris ClicNet, vue de dessus" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+      <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 100" fill="none" stroke-width="2.4"><path d="M20 70 Q30 30 70 35 Q80 55 65 70 Z"/></svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/souris-2.jpg" alt="Souris ClicNet, vue de profil" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+      <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 100" fill="none" stroke-width="2.4"><rect x="25" y="25" width="50" height="50" rx="10"/><circle cx="50" cy="50" r="8" fill="url(#metalGradient)" stroke="none"/></svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/souris-3.jpg" alt="Souris ClicNet, dessous et capteur" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Caractéristiques.</h2>
+    <table class="spec-table">
+      <tr><td>Capteur</td><td>Optique, 26 000 DPI</td></tr>
+      <tr><td>Vitesse de suivi</td><td>650 IPS maximum</td></tr>
+      <tr><td>Autonomie</td><td>70 jours (usage quotidien type)</td></tr>
+      <tr><td>Charge</td><td>USB-C, charge rapide 10 min / 1 jour</td></tr>
+      <tr><td>Connectivité</td><td>Bluetooth multipoint (3 appareils), récepteur 2,4 GHz, filaire</td></tr>
+      <tr><td>Poids</td><td>58 g</td></tr>
+      <tr><td>Pieds</td><td>PTFE pur</td></tr>
+      <tr><td>Boutons</td><td>6, dont 2 latéraux repositionnables</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Dans la boîte.</h2>
+    <ul class="feature-list" style="max-width: 420px; margin: 40px auto 0;">
+      <li>Souris ClicNet</li>
+      <li>Câble USB-C tressé, 1,8 m</li>
+      <li>Récepteur 2,4 GHz</li>
+      <li>Guide de démarrage rapide</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Questions fréquentes.</h2>
+    <div class="faq">
+      <details class="faq-item">
+        <summary>La souris convient-elle aux gauchers ?</summary>
+        <p>Oui, la forme est symétrique et les boutons latéraux peuvent être réassignés ou désactivés d'un côté.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Peut-on l'utiliser filaire en permanence ?</summary>
+        <p>Oui. Le câble USB-C sert aussi de connexion filaire à latence minimale, pratique pour le jeu compétitif.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Le DPI se règle-t-il facilement ?</summary>
+        <p>Un bouton dédié sous la souris permet de basculer entre plusieurs profils de sensibilité enregistrés.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist" id="discord">
+  <div class="wrap">
+    <h2>Rejoignez la communauté.</h2>
+    <p>Suivez les coulisses du projet et soyez informé dès que la souris est disponible.</p>
+    <div class="hero-actions" style="margin-top:38px;">
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener" class="btn btn-primary">Rejoindre le Discord</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="footer-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+      <a href="panier.html">Panier</a>
+    </div>
+    <p class="fine-print">© <span id="year"></span> ClicNet</p>
+  </div>
+</footer>
+
+<script src="products-config.js"></script>
+<script src="script.js"></script>
+<script>
+  const p = getAllProducts().find(p => p.slug === 'souris');
+  if (p) document.getElementById('priceSouris').textContent = p.price + ' €';
+</script>
+</body>
+</html>

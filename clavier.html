@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClicNet Clavier — Chaque touche, calibrée</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e6e9ee"/>
+      <stop offset="100%" stop-color="#7d828d"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="nav-links">
+      <a href="clavier.html" class="active">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+    </div>
+    <div class="nav-icons">
+      <button type="button" class="icon-btn" id="searchToggle" aria-label="Rechercher un produit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="panier.html" class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="icon-label">Panier</span></a>
+    </div>
+    <div class="search-panel" id="searchPanel">
+      <input type="text" id="searchInput" placeholder="Rechercher un produit…" aria-label="Rechercher un produit">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero hero--page">
+  <div class="orb"></div>
+  <p class="breadcrumb"><a href="index.html">Accueil</a> · Clavier</p>
+  <h1>Chaque touche, calibrée.</h1>
+  <p class="lede">Un mécanisme optique conçu pour une frappe nette et silencieuse, quel que soit le rythme.</p>
+  <p id="priceClavier" style="margin-top: 20px; font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--text);">129 €</p>
+  <div class="hero-actions">
+    <a href="panier.html?add=clavier" class="btn btn-primary">Ajouter au panier</a>
+    <a href="souris.html" class="btn btn-ghost">Voir la souris</a>
+  </div>
+</header>
+
+<section class="product" style="border-top:none;">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 200 90" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="6" width="188" height="78" rx="10"/>
+        <line x1="20" y1="26" x2="180" y2="26"/>
+        <line x1="20" y1="45" x2="180" y2="45"/>
+        <line x1="20" y1="64" x2="120" y2="64"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/clavier-hero.jpg" alt="Clavier ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">Frappe</p>
+      <h2>Réactive, mais silencieuse.</h2>
+      <p class="desc">Le mécanisme optique déclenche la frappe à la lumière plutôt qu'au contact métal contre métal. Résultat : une réponse quasi instantanée, sans le bruit sec des switches classiques.</p>
+      <div class="spec-row">
+        <div class="spec"><div class="num" data-count="0.2" data-decimals="1">0</div><div class="label">ms de latence</div></div>
+        <div class="spec"><div class="num" data-count="100">0</div><div class="label">millions de cycles</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="product reverse">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 200 90" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="10" y="14" width="180" height="62" rx="8"/>
+        <line x1="10" y1="45" x2="190" y2="45"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/clavier-chassis.jpg" alt="Châssis du clavier ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">Construction</p>
+      <h2>Un châssis en aluminium brossé.</h2>
+      <p class="desc">Fraisé dans un seul bloc, le châssis apporte une rigidité qui élimine toute flexion pendant la frappe. Un socle antidérapant garde le clavier immobile, même dans le feu de l'action.</p>
+      <ul class="feature-list">
+        <li>Structure rigide, zéro flexion perceptible</li>
+        <li>Pieds inclinables sur deux hauteurs</li>
+        <li>Câble tressé détachable, USB-C</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="product">
+  <div class="wrap">
+    <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 200 90" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="6" width="188" height="78" rx="10"/>
+        <circle cx="30" cy="45" r="3" fill="url(#metalGradient)" stroke="none"/>
+        <circle cx="60" cy="45" r="3" fill="url(#metalGradient)" stroke="none"/>
+        <circle cx="90" cy="45" r="3" fill="url(#metalGradient)" stroke="none"/>
+        <circle cx="120" cy="45" r="3" fill="url(#metalGradient)" stroke="none"/>
+      </svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/clavier-retroeclairage.jpg" alt="Rétroéclairage du clavier ClicNet" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    <div class="product-copy">
+      <p class="kicker">Éclairage</p>
+      <h2>Il s'adapte à la pièce.</h2>
+      <p class="desc">Un capteur de luminosité ajuste l'intensité du rétroéclairage en continu. En pleine lumière il s'efface, dans le noir il se règle juste assez pour rester lisible sans éblouir.</p>
+      <ul class="feature-list">
+        <li>Réglage automatique selon la lumière ambiante</li>
+        <li>16 millions de teintes, par touche ou en un bloc</li>
+        <li>Mode veille après 30 secondes d'inactivité</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>En photos.</h2>
+    <p class="section-lede">Les visuels du produit final arrivent bientôt — ces emplacements sont prêts à les recevoir.</p>
+    <div class="gallery">
+      <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 100" fill="none" stroke-width="2.4"><rect x="10" y="30" width="80" height="40" rx="6"/></svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/clavier-1.jpg" alt="Clavier ClicNet, vue de dessus" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+      <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 100" fill="none" stroke-width="2.4"><path d="M15 65 L85 65 L75 35 L25 35 Z"/></svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/clavier-2.jpg" alt="Clavier ClicNet, vue de profil" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+      <div class="stage" data-tilt>
+        <div class="stage-placeholder">
+          <svg class="stage-icon" viewBox="0 0 100 100" fill="none" stroke-width="2.4"><rect x="30" y="30" width="40" height="40" rx="6"/></svg>
+          <span class="stage-tag">Photo à venir</span>
+        </div>
+        <img class="stage-photo" src="pics/clavier-3.jpg" alt="Clavier ClicNet, détail des touches" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';" onerror="this.remove();">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Caractéristiques.</h2>
+    <table class="spec-table">
+      <tr><td>Type de switch</td><td>Optique, linéaire</td></tr>
+      <tr><td>Latence</td><td>0,2 ms</td></tr>
+      <tr><td>Durée de vie</td><td>100 millions de cycles par touche</td></tr>
+      <tr><td>Châssis</td><td>Aluminium brossé, fraisé CNC</td></tr>
+      <tr><td>Connectivité</td><td>USB-C filaire, Bluetooth multipoint (3 appareils), récepteur 2,4 GHz</td></tr>
+      <tr><td>Rétroéclairage</td><td>RGB par touche, capteur de luminosité automatique</td></tr>
+      <tr><td>Disposition</td><td>Compacte, 75 %</td></tr>
+      <tr><td>Poids</td><td>780 g</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Dans la boîte.</h2>
+    <ul class="feature-list" style="max-width: 420px; margin: 40px auto 0;">
+      <li>Clavier ClicNet</li>
+      <li>Câble USB-C tressé, 1,8 m</li>
+      <li>Récepteur 2,4 GHz</li>
+      <li>Guide de démarrage rapide</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Questions fréquentes.</h2>
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Le clavier fonctionne-t-il sur Mac et Windows ?</summary>
+        <p>Oui. Il est reconnu nativement par les deux systèmes, avec une disposition de touches qui s'adapte automatiquement.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Peut-on remplacer les switches ?</summary>
+        <p>Le mécanisme optique est monté sur un socket amovible : les switches peuvent être changés sans fer à souder.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Combien d'appareils peut-on connecter en même temps ?</summary>
+        <p>Jusqu'à trois appareils en Bluetooth, avec un raccourci clavier pour basculer instantanément de l'un à l'autre.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist" id="discord">
+  <div class="wrap">
+    <h2>Rejoignez la communauté.</h2>
+    <p>Suivez les coulisses du projet et soyez informé dès que le clavier est disponible.</p>
+    <div class="hero-actions" style="margin-top:38px;">
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener" class="btn btn-primary">Rejoindre le Discord</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo">ClicNet <span></span></a>
+    <div class="footer-links">
+      <a href="clavier.html">Clavier</a>
+      <a href="souris.html">Souris</a>
+      <a href="autres-produits.html">Autres produits</a>
+      <a href="https://discord.gg/9ZtpnAUf2S" target="_blank" rel="noopener">Discord</a>
+      <a href="panier.html">Panier</a>
+    </div>
+    <p class="fine-print">© <span id="year"></span> ClicNet</p>
+  </div>
+</footer>
+
+<script src="products-config.js"></script>
+<script src="script.js"></script>
+<script>
+  const p = getAllProducts().find(p => p.slug === 'clavier');
+  if (p) document.getElementById('priceClavier').textContent = p.price + ' €';
+</script>
+</body>
+</html>
